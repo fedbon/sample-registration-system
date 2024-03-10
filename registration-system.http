@@ -1,0 +1,147 @@
+###LOG IN (USER 1)
+POST http://localhost:8080/api/v1/auth/signin
+Content-Type: application/json
+
+{
+  "username": "Max_Payne",
+  "password": "pwd"
+}
+
+###LOG IN (USER 2)
+POST http://localhost:8080/api/v1/auth/signin
+Content-Type: application/json
+
+{
+  "username": "John_Shepard",
+  "password": "pwd"
+}
+
+###LOG IN (USER 3)
+POST http://localhost:8080/api/v1/auth/signin
+Content-Type: application/json
+
+{
+  "username": "Gordon_Freeman",
+  "password": "pwd"
+}
+
+###SEND A REQUEST (USER 1)
+POST http://localhost:8080/api/v1/users/send
+Authorization: Bearer {{auth_token1}}
+Content-Type: application/json
+
+{
+  "requestText": "I'm interested in developing a custom software solution for my business. I need assistance in designing and implementing a scalable application that can handle our growing user base. Please provide details on your expertise, project timelines, and cost estimates. Thank you!"
+}
+
+###SEND A REQUEST (USER 2)
+POST http://localhost:8080/api/v1/users/send
+Authorization: Bearer {{auth_token1}}
+Content-Type: application/json
+
+{
+  "requestText": "Our company is experiencing technical issues with our network infrastructure, and we require immediate IT support to resolve these issues. The problems include network downtime, connectivity issues, and security concerns. Please assign a technician to address these issues at the earliest convenience. Thank you!"
+}
+
+###SEND A REQUEST (USER 3)
+POST http://localhost:8080/api/v1/users/send
+Authorization: Bearer {{auth_token1}}
+Content-Type: application/json
+
+{
+  "requestText": "We are considering migrating our on-premises infrastructure to the cloud to improve scalability, reliability, and cost-effectiveness. We are interested in your cloud migration services and would like to discuss the process, potential challenges, and benefits. Please provide us with information on your cloud migration expertise and service offerings. Thank you!"
+}
+
+###GET ALL REQUESTS BY LOGGED USER 1 (GET MY REQUESTS WITH DEFAULT DESC SORTING)
+GET http://localhost:8080/api/v1/users/my
+Authorization: Bearer {{auth_token1}}
+Content-Type: application/json
+
+###GET ALL REQUESTS BY LOGGED USER 1 (ASC SORTING)
+GET http://localhost:8080/api/v1/users/my?direction=ASC
+Authorization: Bearer {{auth_token1}}
+Content-Type: application/json
+
+###GET ALL REQUESTS BY LOGGED USER 2 (GET MY REQUESTS)
+GET http://localhost:8080/api/v1/users/my
+Authorization: Bearer {{auth_token2}}
+Content-Type: application/json
+
+###GET ALL REQUESTS BY LOGGED USER 3 (GET MY REQUESTS)
+GET http://localhost:8080/api/v1/users/my
+Authorization: Bearer {{auth_token3}}
+Content-Type: application/json
+
+###CREATE A DRAFT REQUEST
+POST http://localhost:8080/api/v1/users/create-draft
+Authorization: Bearer {{auth_token1}}
+Content-Type: application/json
+
+{
+  "requestText": "DRAFT REQUEST!"
+}
+
+###UPDATE THE DRAFT REQUEST
+PUT http://localhost:8080/api/v1/users/update-draft
+Authorization: Bearer {{auth_token1}}
+Content-Type: application/json
+
+{
+  "requestId": 4,
+  "requestText": "UPDATED DRAFT REQUEST!"
+}
+
+###SEND THE DRAFT REQUEST (USER 1)
+POST http://localhost:8080/api/v1/users/4/send
+Authorization: Bearer {{auth_token1}}
+Content-Type: application/json
+
+###GET ALL PENDING REQUESTS (WITH DEFAULT DESC SORTING)
+GET http://localhost:8080/api/v1/operators/requests
+Authorization: Bearer {{auth_token2}}
+Content-Type: application/json
+
+###GET ALL PENDING REQUESTS (ASC SORTING)
+GET http://localhost:8080/api/v1/operators/requests?direction=ASC
+Authorization: Bearer {{auth_token1}}
+Content-Type: application/json
+
+###GET ALL PENDING REQUESTS BY USERNAME
+GET http://localhost:8080/api/v1/operators/requests?usernameFilter=Max_Payne
+Authorization: Bearer {{auth_token1}}
+Content-Type: application/json
+
+###GET USER REQUEST BY ID
+GET http://localhost:8080/api/v1/operators/requests/1
+Authorization: Bearer {{auth_token1}}
+Content-Type: application/json
+
+###APPROVE USER REQUEST BY ID
+PUT http://localhost:8080/api/v1/operators/requests/1/approve
+Authorization: Bearer {{auth_token1}}
+Content-Type: application/json
+
+###REJECT USER REQUEST BY ID
+PUT http://localhost:8080/api/v1/operators/requests/2/reject
+Authorization: Bearer {{auth_token1}}
+Content-Type: application/json
+
+###GET ALL AVAILABLE REQUESTS
+GET http://localhost:8080/api/v1/admins/requests
+Authorization: Bearer {{auth_token2}}
+Content-Type: application/json
+
+###GET ALL USERS
+GET http://localhost:8080/api/v1/admins/users
+Authorization: Bearer {{auth_token2}}
+Content-Type: application/json
+
+###GET ALL AVAILABLE REQUESTS
+PUT http://localhost:8080/api/v1/admins/users/2/roles
+Authorization: Bearer {{auth_token2}}
+Content-Type: application/json
+
+#########################################################
+GET http://localhost:8080/api/v1/auth/user/Max_Payne
+Authorization: Bearer {{auth_token1}}
+Content-Type: application/json

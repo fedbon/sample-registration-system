@@ -1,0 +1,15 @@
+services:
+
+  user-request-db:
+    image: postgres:15
+    ports:
+      - 5430:5432
+    networks:
+      - postgres-user-requests
+    environment:
+      POSTGRES_USER: usr
+      POSTGRES_PASSWORD: pwd
+      POSTGRES_DB: user-request-db
+
+networks:
+  postgres-user-requests:
